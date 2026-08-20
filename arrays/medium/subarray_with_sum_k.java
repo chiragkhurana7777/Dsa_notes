@@ -1,36 +1,32 @@
 import java.util.*;
 
-public class longest_subarray_with_sum_k {
+/*nums = [3, 4, -7, 1, 3, 3, 1, -4, 2, 5, -2]
+k = 7 */
 
-    public static int longestSubarray(int[] nums, int k) {
+public class subarray_with_sum_k {
 
+    public static int subarraySum(int[] nums, int k) {
         HashMap<Integer, Integer> map = new HashMap<>();
 
         int sum = 0;
-        int maxLen = 0;
+        int ans = 0;
 
-        map.put(0, -1);
+        map.put(0, 1);
 
         for (int i = 0; i < nums.length; i++) {
+            sum += nums[i];
 
-            sum += nums[i]; // prefix sum
+            int needed = sum - k;
 
-            int req = sum - k;
+            ans += map.getOrDefault(needed, 0);
 
-            if (map.containsKey(req)) {
-                maxLen = Math.max(maxLen, i - map.get(req));
-            }
-
-            if (!map.containsKey(sum)) {
-                map.put(sum, i);
-            }
+            map.put(sum, map.getOrDefault(sum, 0) + 1);
         }
 
-        return maxLen;
+        return ans;
     }
 
     public static void main(String[] args) {
-
         Scanner sc = new Scanner(System.in);
 
         System.out.print("Enter array size: ");
@@ -39,7 +35,6 @@ public class longest_subarray_with_sum_k {
         int[] nums = new int[n];
 
         System.out.println("Enter array elements:");
-
         for (int i = 0; i < n; i++) {
             nums[i] = sc.nextInt();
         }
@@ -47,9 +42,9 @@ public class longest_subarray_with_sum_k {
         System.out.print("Enter k: ");
         int k = sc.nextInt();
 
-        int ans = longestSubarray(nums, k);
+        int result = subarraySum(nums, k);
 
-        System.out.println("Longest subarray length: " + ans);
+        System.out.println("Number of subarrays = " + result);
 
         sc.close();
     }

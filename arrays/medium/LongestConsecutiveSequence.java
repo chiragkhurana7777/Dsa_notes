@@ -5,20 +5,15 @@ public class LongestConsecutiveSequence {
     public static int longestConsecutive(int[] nums) {
 
         int n = nums.length;
-
         if (n == 0 || n == 1) {
             return n;
         }
-
         int longest = 1;
-
         HashSet<Integer> set = new HashSet<>();
-
         // Add all elements to HashSet
         for (int i = 0; i < n; i++) {
             set.add(nums[i]);
         }
-
         // Find the start of every sequence
         for (int num : set) {
 
@@ -30,7 +25,6 @@ public class LongestConsecutiveSequence {
                     current++;
                     x++;
                 }
-
                 longest = Math.max(longest, current);
             }
         }
