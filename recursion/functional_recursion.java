@@ -1,0 +1,1 @@
+//same as factorial of a number
