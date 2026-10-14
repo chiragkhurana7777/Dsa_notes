@@ -3,6 +3,21 @@ import java.util.*;
 
 public class main {
 
+    public static int binary2decimal(String st){
+        int num=0;
+        int len=st.length();
+        int p2=1;
+
+        for(int i=len-1;i>=0;i--){
+            if(st.charAt(i)=='1'){
+                num+=p2;
+            }
+            p2=p2*2;
+        }
+
+        return num;
+    }
+
     public static String inttobinary(int n){
         StringBuilder st = new StringBuilder();
 
@@ -19,8 +34,11 @@ public class main {
 
         System.out.print("enter value of num: ");
         int num= sc.nextInt();
-        
-        System.out.println("num in binary is : "+inttobinary(num));
+        String st=inttobinary(num);
+
+        System.out.println("num in binary is : "+st);
+        System.out.println("num'binary in decimal is : "+binary2decimal(st));
+        // System.out.println("num'binary in decimal is : "+binary2decimal("1111111111111111111111111111111111111111111111111111111111111111"));
 
         sc.close();
     }
